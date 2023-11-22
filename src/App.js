@@ -7,6 +7,8 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import OTPInput from "react-otp-input";
+import PhoneInput from "react-phone-input-2";
+import 'react-phone-input-2/lib/style.css'
 export default function App() {
   const [otpSent, setOtpSent] = useState(false);
   return (
@@ -43,7 +45,12 @@ export default function App() {
             >
               Verify
             </Button>
-          </Card>
+            <p className="text-center underline m-4 hover:text-blue-600">Resend Otp</p>
+           
+            <p className="text-center underline hover:text-blue-600">Use another number</p>
+           
+           </Card>
+         
         </div>
       ) : (
         <div className="flex flex-col gap-3 justify-center items-center w-full min-h-screen">
@@ -51,16 +58,28 @@ export default function App() {
             <Typography className="font-roboto text-[38px] font-medium text-purple-800">
               Signin
             </Typography>
-            <Typography className="text-xs font-roboto font-normal my-1 text-gray-900">
+            <Typography className="text-xs font-roboto font-normal my-2 text-gray-900">
               Please enter your mobile number to login. We will send an OTP to
               verify your number.
             </Typography>
-            <Input
-              size="lg"
-              autoFocus
-              type="number"
-              className="mt-4 rounded-md h-[40px]"
+            <PhoneInput
+              country={'in'}
+              inputProps={{
+                name: 'phone',
+                required: true,
+                autoFocus: true
+              }}
+              inputStyle={{
+                width: "100%",
+                height: '40px',
+                borderRadius: '8px',
+                border: '1px solid #000'
+              }
+
+              }
+              
             />
+           
             <Button
               className="w-full h-[50px] mt-4 bg-purple-800 text-white text-[18px] font-bold rounded-lg"
               onClick={() => setOtpSent(!otpSent)}
